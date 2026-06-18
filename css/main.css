@@ -1,0 +1,382 @@
+/* ============================================
+   MAIN.CSS - Variables, Reset, Base Styles
+   ============================================ */
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --color-primary-dark: #040100;
+  --color-primary-warm: #ED7A36;
+  --color-secondary-warm: #DD4D06;
+  --color-tertiary-warm: #5B0000;
+  --color-white: #FFFFFF;
+  --color-light-warm: #FFF0E6;
+  --color-medium-gray: #BDA596;
+  --color-dark-gray: #120805;
+  --color-warm-gray: #2A1508;
+  --color-footer: #020100;
+  --color-border-muted: #2B3530;
+  --color-star: #FFB64D;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #040100 0%, #120805 48%, #020100 100%);
+  --gradient-accent: linear-gradient(150deg, #ED7A36 0%, #DD4D06 100%);
+  --gradient-glow: radial-gradient(circle, rgba(237,122,54,0.18) 0%, transparent 70%);
+  --gradient-hero:
+    radial-gradient(ellipse at 78% 42%, rgba(237, 122, 54, 0.28) 0%, rgba(221, 77, 6, 0.15) 28%, transparent 58%),
+    radial-gradient(ellipse at 18% 82%, rgba(91, 0, 0, 0.70) 0%, transparent 46%),
+    radial-gradient(ellipse at 45% 20%, rgba(237, 122, 54, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 50%, rgba(237, 122, 54, 0.08) 0%, transparent 50%),
+    linear-gradient(145deg, #040100 0%, #120805 52%, #5B0000 160%);
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --space-9: 128px;
+
+  /* Transitions */
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --container-max: 1200px;
+  --navbar-height: 72px;
+  --navbar-height-mobile: 64px;
+}
+
+/* ============================================
+   CSS RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #020100;
+  background-image:
+    radial-gradient(ellipse 900px 650px at 8% 45%, rgba(237, 122, 54, 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 500px at 88% 35%, rgba(221, 77, 6, 0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 600px 400px at 50% 85%, rgba(237, 122, 54, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 500px at 70% 15%, rgba(237, 122, 54, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #020100 0%, #040100 100%);
+  color: var(--color-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Full-page star noise overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(0.5px 0.5px at 3% 7%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 11% 15%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 19% 4%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.8px 0.8px at 26% 11%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(0.5px 0.5px at 34% 22%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 41% 8%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(0.5px 0.5px at 48% 17%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.8px 0.8px at 56% 5%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.5px 0.5px at 63% 13%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 71% 28%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 78% 9%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.8px 0.8px at 86% 19%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(0.5px 0.5px at 93% 6%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(0.5px 0.5px at 7% 25%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 15% 32%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.8px 0.8px at 23% 41%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 31% 29%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 38% 48%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 46% 35%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.8px 0.8px at 53% 52%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.5px 0.5px at 61% 38%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 69% 58%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 76% 42%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(0.8px 0.8px at 84% 62%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(0.5px 0.5px at 91% 45%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.5px 0.5px at 6% 53%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 14% 68%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 22% 59%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 29% 75%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(0.5px 0.5px at 37% 63%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 44% 82%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.8px 0.8px at 52% 70%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 59% 88%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.5px 0.5px at 67% 78%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 75% 92%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(0.8px 0.8px at 82% 85%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.5px 0.5px at 90% 72%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.5px 0.5px at 96% 58%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 2% 87%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(0.8px 0.8px at 10% 95%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 17% 91%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 25% 97%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.5px 0.5px at 33% 89%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 40% 98%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(0.5px 0.5px at 47% 93%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 55% 96%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(0.5px 0.5px at 62% 99%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(0.8px 0.8px at 70% 94%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 77% 97%, rgba(255,255,255,0.50), transparent);
+  background-repeat: no-repeat;
+}
+
+
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Skip Link (Accessibility) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary-warm);
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 10000;
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: 20px;
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-6);
+  }
+}
+
+.section {
+  padding: var(--space-8) 0;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-9) 0;
+  }
+}
+
+.section-header {
+  margin-bottom: var(--space-7);
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-primary-warm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effect */
+.glow-warm {
+  box-shadow: 0 0 20px rgba(237, 122, 54, 0.3), 0 0 40px rgba(221, 77, 6, 0.12);
+}
+
+/* Flex Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  z-index: 1001;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ============================================
+   CUSTOM CURSOR (Desktop Only)
+   ============================================ */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  display: none;
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+
+  body {
+    cursor: none;
+  }
+
+  a, button, input, textarea, [role="button"] {
+    cursor: none;
+  }
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary-warm);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: transform var(--transition-fast);
+}
+
+.cursor-ring {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-primary-warm);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: all var(--transition-base);
+}
+
+.custom-cursor.expanded .cursor-ring {
+  width: 40px;
+  height: 40px;
+  background: rgba(237, 122, 54, 0.1);
+}
+
+.custom-cursor.expanded .cursor-dot {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* ============================================
+   LINK ARROW COMPONENT
+   ============================================ */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary-warm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap var(--transition-base);
+}
+
+.link-arrow:hover {
+  gap: var(--space-3);
+}
+
+.link-arrow svg {
+  transition: transform var(--transition-base);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   MOBILE OVERRIDES (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
+}
